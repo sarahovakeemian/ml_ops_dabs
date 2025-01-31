@@ -62,6 +62,7 @@ def get_endpoint_info(endpoint_name: str):
 def create_endpoint(
     cfg: ModelServingConfig, perms_cfg: ServingEndpointPermissions = None
 ):
+    api_root, api_token = get_api_credentials()
     """Create a new endpoint with the specified configuration."""
     data = {
         "name": cfg.endpoint_name,
@@ -74,14 +75,17 @@ def create_endpoint(
             # },
         },
     }
-    headers = {"Context-Type": "text/json", "Authorization": f"Bearer {cfg.api_token}"}
-    url = f"{cfg.api_root}/api/2.0/serving-endpoints"
+    #headers = {"Context-Type": "text/json", "Authorization": f"Bearer {cfg.api_token}"}
+    #url = f"{cfg.api_root}/api/2.0/serving-endpoints"
+    headers = {"Context-Type": "text/json", "Authorization": f"Bearer {api_token}"}
+    url = f"{api_root}/api/2.0/serving-endpoints"
     response = requests.post(url=url, json=data, headers=headers)
     response.raise_for_status()
     response_json = response.json()
     serving_endpoint_id = response_json["id"]
     if perms_cfg:
-        perms_url = f"{cfg.api_root}/api/2.0/permissions/serving-endpoints/{serving_endpoint_id}"
+        #perms_url = f"{cfg.api_root}/api/2.0/permissions/serving-endpoints/{serving_endpoint_id}"
+        perms_url = f"{api_root}/api/2.0/permissions/serving-endpoints/{serving_endpoint_id}"
         perms_response = requests.patch(
             url=perms_url, json=perms_cfg.acl, headers=headers
         )
