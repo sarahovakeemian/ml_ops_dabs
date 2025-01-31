@@ -8,7 +8,7 @@ def get_api_credentials():
     dbutils = DBUtils(spark)
     api_root = (
         #dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiUrl().get()
-        dbutils.notebook.entry_point.getDbutils().notebook().getContext().browserHostName().get()
+        'https://' + spark.conf.get("spark.databricks.workspaceUrl")
     )
     api_token = (
         dbutils.notebook.entry_point.getDbutils()
