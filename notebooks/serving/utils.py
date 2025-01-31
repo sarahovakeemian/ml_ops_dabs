@@ -7,7 +7,8 @@ def get_api_credentials():
     spark = SparkSession.builder.getOrCreate()
     dbutils = DBUtils(spark)
     api_root = (
-        dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiUrl().get()
+        #dbutils.notebook.entry_point.getDbutils().notebook().getContext().apiUrl().get()
+        dbutils.notebook.entry_point.getDbutils().notebook().getContext().browserHostName().get()
     )
     api_token = (
         dbutils.notebook.entry_point.getDbutils()
