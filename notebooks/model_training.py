@@ -25,13 +25,9 @@ with mlflow.start_run():
         artifact_path="model",
         # The signature is automatically inferred from the input example and its predicted output.
         input_example=input_example,
-        registered_model_name="shovakeemian_dev.ml_ops_dabs.iris_model",
+        registered_model_name="uc_stefano_mlops_dev.ml_ops_dabs.iris_model",
     )
 
 # COMMAND ----------
 
-print('updating to version 9!')
-
-# COMMAND ----------
-
-
+print('updating to latest version')

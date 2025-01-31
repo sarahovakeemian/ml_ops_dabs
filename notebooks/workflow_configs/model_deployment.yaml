@@ -1,11 +1,11 @@
 dev_model:
-  catalog: shovakeemian_dev
+  catalog: uc_stefano_mlops_dev
   schema: ml_ops_dabs
   model_name: iris_model
   model_alias: champion
-endpoint_name: shovakeemian_ml_ops_dabs
+endpoint_name: uc_stefano_ml_ops_dabs
 prod_model:
-  catalog: shovakeemian_prod
+  catalog: uc_stefano_mlops_prod
   schema: ml_ops_dabs
   model_name: iris_model
   model_alias: champion

@@ -49,7 +49,3 @@ if environment != "dev":
 else:
     # no-op in dev
     print("Running in dev, so nothing to do")
-
-# COMMAND ----------
-
-
