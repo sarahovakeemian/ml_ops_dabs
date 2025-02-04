@@ -68,17 +68,17 @@ def create_endpoint(
         "name": cfg.endpoint_name,
         "config": {
             "served_entities": [cfg.get_entity_config()]
-            # ,"auto_capture_config": {
-            #     "catalog_name": cfg.catalog,
-            #     "schema_name": cfg.schema,
-            #     "table_name_prefix": cfg.inference_table_prefix,
-            # },
         },
     }
     #headers = {"Context-Type": "text/json", "Authorization": f"Bearer {cfg.api_token}"}
     #url = f"{cfg.api_root}/api/2.0/serving-endpoints"
     headers = {"Context-Type": "text/json", "Authorization": f"Bearer {api_token}"}
     url = f"{api_root}/api/2.0/serving-endpoints"
+
+    print("\n------------------")
+    print(data)
+    print("\n------------------")
+
     response = requests.post(url=url, json=data, headers=headers)
     response.raise_for_status()
     response_json = response.json()
