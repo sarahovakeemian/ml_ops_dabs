@@ -44,5 +44,11 @@ resources:
           notebook_task:
             notebook_path: ../notebooks/create_serving_endpoint.py
             <<: *shared_parameters
-
+        - task_key: download_model_artifact
+          job_cluster_key: model_deployment_job_cluster
+          depends_on:
+            - task_key: create_ml_endpoint
+          notebook_task:
+            notebook_path: ../notebooks/download_artifact.py
+            <<: *shared_parameters
       <<: *permissions
