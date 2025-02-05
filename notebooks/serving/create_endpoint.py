@@ -6,6 +6,7 @@ from dataclasses import dataclass, field
 from mlflow.deployments import get_deploy_client
 from mlflow.exceptions import MlflowException
 from mlflow import MlflowClient
+import mlflow
 
 from serving.utils import get_api_credentials
 from config import ServingEndpointPermissions
