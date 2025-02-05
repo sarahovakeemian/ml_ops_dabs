@@ -26,6 +26,7 @@ ML_OPS_DABS/
 │   ├── workflow_configs/
 │   │   ├── endpoint_perms.yaml
 │   │   └── model_deployment.yaml
+│   ├── download_artifact.py
 │   ├── create_serving_endpoint.py
 │   ├── model_deployment.py
 │   └── model_training.py
@@ -48,6 +49,7 @@ ML_OPS_DABS/
     * workflow_configs : Config directory
        * endpoint_perms.yaml : permission
        * model_deployment.yaml : model metadata
+    * download_artifact.py : download model artifacts if it is prod environment
     * create_serving_endpoint.py : create model endpoint
     * model_deployment.py : copy model from dev if it is prod environment
     * model_training.py : training code
