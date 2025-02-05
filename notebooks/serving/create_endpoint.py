@@ -31,7 +31,10 @@ class ModelServingConfig:
         self.inference_table_prefix = (
             self.endpoint_name.replace("-", "_") + "_request_response"
         )
-        self.model_version = MlflowClient().get_model_version_by_alias(self.registered_model_name, self.target_alias)
+        mlflow.set_registry_uri("databricks-uc")
+        client = MlflowClient()
+        mv = client.get_model_version_by_alias(self.registered_model_name, self.target_alias)
+        self.model_version = mv.version
 
     def get_entity_config(self):
         """Return the json config for this entity to be used with the Databricks
