@@ -34,3 +34,8 @@ jobs:
         if: ${{ github.event_name == 'push' }}
         run: |
           databricks bundle deploy
+      - name: Run Bundle
+        id: run
+        if: ${{ github.event_name == 'push' }}
+        run: |
+          databricks bundle run

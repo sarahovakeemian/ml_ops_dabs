@@ -1,15 +1,68 @@
 # ml_ops_dabs
 Show the DevOps part of MLOps using Github Actions and DABs
+Forked from [sarahovakeemian](https://github.com/sarahovakeemian/ml_ops_dabs) repository
+
+# Structure
+<pre>
+ML_OPS_DABS/
+├── .github/workflows/
+│   ├── dev-databricks-infra-ci-cd.yaml
+│   └── prod-databricks-infra-ci-cd.yaml
+├── databricks_infra/
+│   └── deploy-model-pipeline.yml
+├── notebooks/
+│   ├── config/
+│   │   └── __init__.py
+│   ├── serving/
+│   │   ├── create_endpoint.py
+│   │   └── utils.py
+│   ├── workflow_configs/
+│   │   ├── endpoint_perms.yaml
+│   │   └── model_deployment.yaml
+│   ├── create_serving_endpoint.py
+│   ├── model_deployment.py
+│   └── model_training.py
+├── databricks.yml
+└── README.md
+</pre>
+
+* databricks.yml: bundle name, infra config inclusion, target workspace
+* .github/workflows/ : github action files
+    * dev-databricks-infra-ci-cd.yaml : Action for dev branch (only validate, as frequent push to dev, deploy everytime is not required)
+    * prod-databricks-infra-ci-cd.yaml : Action for prod branch (deploy and run)
+* databricks_infra : databricks.yml includes this
+    * deploy-model-pipeline.yml : Cluster, permission, job metadata
+* notebooks : model related codes
+    * config : definition of dataclass generated from environment yaml files
+       * \_\_init\_\_.py : Model metadata creation
+    * serving : serving related codes
+       * create_endpoint.py : create or update model serving endpoint
+       * util.py : credential related
+    * workflow_configs : Config directory
+       * endpoint_perms.yaml : permission
+       * model_deployment.yaml : model metadata
+    * create_serving_endpoint.py : create model endpoint
+    * model_deployment.py : copy model from dev if it is prod environment
+    * model_training.py : training code
 
 # HowTo
-1. git clone this project to local
-2. git branch dev
-3. edit code (url, catalog, model name, ...)
-4. create catalog, schema in databricks
-5. databricks bundle init
-6. databricks bundle deploy
-7. databricks bundle run
-8. merge to main branch
+1. [local]: git clone this project to local
+2. [local]: git branch dev
+3. [local]: edit code (url, catalog, model name, ...)
+   * databricks.yml: change endpoint for dev, prod
+   * deploy-model-pipeline.yml (if it is required)
+   * workflow_configs/*
+4. [databricks]: create catalog, schema in databricks as written in 3.
+5. [local]: databricks bundle init
+6. [local]: databricks bundle deploy
+7. [databricks]: Go to the bundle workspace and run "model_training.py" using same interactive cluster as defined in deploy-model-pipeline.yml
+8. [databricks]: Go to "Model" menu, and set alias "champion"
+7. [local]: databricks bundle run
+8. [local or databricks or github]: merge to main branch
 
 # Notice
-ML runtime 14.3 lts compatible (numpy.core.numeric.ComplexWarning import problem in > 15.4 ML)
+numpy==1.26.4 is required
+
+# Contact
+stefano.jang@databricks.com
+
