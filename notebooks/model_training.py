@@ -26,8 +26,6 @@ with mlflow.start_run():
         # The signature is automatically inferred from the input example and its predicted output.
         input_example=input_example,
         registered_model_name="uc_stefano_mlops_dev.ml_ops_dabs.iris_model",
-        #should be <= 1.23.5
-        extra_pip_requirements=["numpy"],
     )
 
 # COMMAND ----------
