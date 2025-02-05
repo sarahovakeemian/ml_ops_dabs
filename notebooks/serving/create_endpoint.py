@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 
 from mlflow.deployments import get_deploy_client
 from mlflow.exceptions import MlflowException
+from mlflow import MlflowClient
 
 from serving.utils import get_api_credentials
 from config import ServingEndpointPermissions
@@ -23,12 +24,14 @@ class ModelServingConfig:
     api_token: str = field(init=False)
     workload_size: str = 'Small'
     workload_type: str = 'CPU'
+    target_alias: str = 'champion'
 
     def __post_init__(self):
         self.api_root, self.api_token = get_api_credentials()
         self.inference_table_prefix = (
             self.endpoint_name.replace("-", "_") + "_request_response"
         )
+        self.model_version = MlflowClient().get_model_version_by_alias(self.registered_model_name, self.target_alias)
 
     def get_entity_config(self):
         """Return the json config for this entity to be used with the Databricks
