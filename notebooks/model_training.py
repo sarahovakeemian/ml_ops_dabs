@@ -1,5 +1,6 @@
 # Databricks notebook source
 # MAGIC %pip install --upgrade "mlflow-skinny[databricks]"
+# MAGIC %pip install numpy==1.26.4
 # MAGIC dbutils.library.restartPython()
 
 # COMMAND ----------
@@ -26,6 +27,7 @@ with mlflow.start_run():
         # The signature is automatically inferred from the input example and its predicted output.
         input_example=input_example,
         registered_model_name="uc_stefano_mlops_dev.ml_ops_dabs.iris_model",
+        extra_pip_requirements=["numpy==1.26.4"],
     )
 
 # COMMAND ----------
