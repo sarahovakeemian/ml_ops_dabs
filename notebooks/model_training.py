@@ -33,3 +33,4 @@ with mlflow.start_run():
 # COMMAND ----------
 
 print('updating to latest version')
+print('test')
