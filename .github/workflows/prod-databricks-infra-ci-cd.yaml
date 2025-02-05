@@ -36,4 +36,4 @@ jobs:
       - name: Run Bundle
         id: run
         run: |
-          databricks bundle run
+          databricks bundle run prod-workspace_deploy_model_pipeline
