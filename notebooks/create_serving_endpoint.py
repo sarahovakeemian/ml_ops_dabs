@@ -28,7 +28,7 @@ perms_cfg
 model = getattr(cfg, f"{environment}_model")
 scale_to_zero_enabled = False #if environment == "prod" else True
 serving_cfg = ModelServingConfig(
-    endpoint_name=cfg.endpoint_name,
+    endpoint_name=f"{cfg.endpoint_name}_{environment}",
     registered_model_name=model.path,
     model_version=model.model_version,
     catalog=model.catalog,
