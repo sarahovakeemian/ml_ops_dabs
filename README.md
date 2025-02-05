@@ -2,6 +2,13 @@
 Show the DevOps part of MLOps using Github Actions and DABs
 Forked from [sarahovakeemian](https://github.com/sarahovakeemian/ml_ops_dabs) repository
 
+# Prerequisites
+1. [Install databricks cli](https://docs.databricks.com/en/dev-tools/cli/install.html)
+2. [Get databricks PAT](https://docs.databricks.com/en/dev-tools/auth/pat.html)
+3. [PAT authentication](https://docs.databricks.com/en/dev-tools/cli/authentication.html#databricks-personal-access-token-authentication)
+4. Set environment secrets in Github > Environments > Environments Secrets, you should make two environments - dev and prod
+   * name: DATABRICKS_TOKEN, value: PAT
+
 # Structure
 <pre>
 ML_OPS_DABS/
@@ -53,11 +60,11 @@ ML_OPS_DABS/
    * deploy-model-pipeline.yml (if it is required)
    * workflow_configs/*
 4. [databricks]: create catalog, schema in databricks as written in 3.
-5. [local]: databricks bundle init
-6. [local]: databricks bundle deploy
+5. [local]: databricks bundle init --profile {profile_name}
+6. [local]: databricks bundle deploy --profile {profile_name}
 7. [databricks]: Go to the bundle workspace and run "model_training.py" using same interactive cluster as defined in deploy-model-pipeline.yml
 8. [databricks]: Go to "Model" menu, and set alias "champion"
-7. [local]: databricks bundle run
+7. [local]: databricks bundle run --profile {profile_name}
 8. [local or databricks or github]: merge to main branch
 
 # Notice
