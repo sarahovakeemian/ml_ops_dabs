@@ -79,3 +79,10 @@ stefano.jang@databricks.com
 Please note that all projects in the /Stefano-Jang github account are provided for your exploration only, and are not formally supported by Databricks with Service Level Agreements (SLAs). They are provided AS-IS and we do not make any guarantees of any kind. Please do not submit a support ticket relating to any issues arising from the use of these projects.
 
 Any issues discovered through the use of this project should be filed as GitHub Issues on the Repo. They will be reviewed as time permits, but there are no formal SLAs for support.
+
+# DABs MLOPs Demo
+Show the DevOps part of MLOps using Github Actions and DABs.
+
+## Description
+
+This demo is meant to show: (1) how a Data Scientist updates a model in a dev environment, (2) productionalizes newly updaed model to a prod environemnt which entails moving the model from dev to prod and updating a serving endpoint in prod.  
